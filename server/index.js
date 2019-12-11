@@ -10,15 +10,10 @@ const PORT = process.env.PORT || 5000;
 app.use(morgan("dev"));
 app.use(bodyParser.json());
 
-// helps get rid of deprecation warnings
-mongoose.set('useNewUrlParser', true)
-mongoose.set('useCreateIndex', true)
-mongoose.set('useUnifiedTopology', true)
-
 //connect to db
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost/bdr-subscription",
-    
+mongoose.connect("mongodb://localhost/todo-auth-example",
+    {useMongoClient: true},  // helps get rid of deprecation warnings
     (err) => {
         if (err) throw err;
         console.log("Connected to the database");
@@ -34,4 +29,3 @@ app.use("/auth", require("./routes/auth"));
 app.listen(PORT, () => {
     console.log(`[+] Starting server on port ${PORT}`);
 });
-

@@ -1,8 +1,7 @@
 import React, { Component } from 'react';
 import LoginForm from "./LoginForm";
-import {connect} from 'react-redux'
-import {login} from '../../redux/auth'
-
+import {connect} from "react-redux";
+import {login} from "../../redux/auth";
 
 class LoginFormContainer extends Component {
     constructor() {
@@ -38,13 +37,11 @@ class LoginFormContainer extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        this.props.login(this.state.inputs)
+        this.props.login(this.state.inputs);
         this.clearInputs();
     }
 
-    
     render() {
-        
         let authErrCode = this.props.authErrCode.login
         let errMsg = ""
         if (authErrCode < 500 && authErrCode > 399) {
@@ -60,7 +57,6 @@ class LoginFormContainer extends Component {
                 {...this.state.inputs} />
         )
     }
-
 }
 
 export default connect(state => state.auth, { login })(LoginFormContainer);

@@ -18,13 +18,11 @@ authRouter.post("/signup", (req, res) => {
     });
 });
 
-
-
 authRouter.post("/login", (req, res) => {
-    User.findOne({ username: req.body.username.toLowerCase() }, (err, user) => {
+    User.findOne({username: req.body.username.toLowerCase()}, (err, user) => {
         if (err) return res.status(500).send(err);
         if (!user) {
-            return res.status(403).send({success: false, err: "Username or password are incorrect"})
+            return res.status(403).send({success: false, message: "Email or password are incorrect"})
         }
         user.checkPassword(req.body.password, (err, match) => {
             if (err) return res.status(500).send(err);
@@ -32,7 +30,6 @@ authRouter.post("/login", (req, res) => {
             const token = jwt.sign(user.withoutPassword(), process.env.SECRET);
             return res.send({ token: token, user: user.withoutPassword(), success: true })
         });
-        
     });
 });
 
