@@ -1,15 +1,12 @@
 import axios from "axios";
 
-let todoAxios = axios.create()
+let todoAxios = axios.create();
 
-todoAxios.interceptors.request.use((config) => {
-    const token = localStorage.getItem("token")
-    config.headers.Authorization = `Bearer ${token}`
-    return config
-})
-
-const SET_TODOS = "SET_TODOS";
-const todoUrl = "/api/todo/";
+todoAxios.interceptors.request.use((config)=>{  
+    const token = localStorage.getItem("token");
+    config.headers.Authorization = `Bearer ${token}`;
+    return config;
+});
 
 ///////////////////
 // Todos Reducer //
@@ -22,11 +19,13 @@ export default function todosReducer(todos = initialTodos, action) {
             return [...action.todos]
         case "LOGOUT":
             return initialTodos;
-
         default:
             return todos
     }
 }
+
+const SET_TODOS = "SET_TODOS";
+const todoUrl = "/api/todo/";
 
 ///////////////////////////
 // Todos Action Creators //
@@ -74,7 +73,7 @@ export function editTodo(id, todo) {
     }
 }
 
-export function deleteTodo(id){
+export function deleteTodo(id) {
     return dispatch => {
         todoAxios.delete(todoUrl + id)
             .then(response => {
@@ -85,5 +84,7 @@ export function deleteTodo(id){
             })
     }
 }
+
+
 
 
