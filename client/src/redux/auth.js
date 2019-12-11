@@ -1,6 +1,6 @@
 import axios from "axios";
 
-let initialState = {
+const initialState = {
     todos: [],
     user: {
     username: "",
@@ -14,6 +14,7 @@ let initialState = {
     isAuthenticated: false,
     loading: true
 }
+
 
 function authError(key, errCode) {
     return {
@@ -45,7 +46,16 @@ export function verify() {
 
 export default function reducer(state = initialState, action) {
     switch (action.type) {
-        
+        case "AUTH_ERROR":
+            return {
+                ...state,
+                authErrCode: {
+                    ...state.authErrCode,
+                    [action.key]: action.errCode,
+                    loading: false
+                }
+            }
+
         case "AUTHENTICATE":
             return {
                 ...state,
@@ -60,16 +70,7 @@ export default function reducer(state = initialState, action) {
                     ...initialState,
                     loading: false
                 }
-            case "AUTH_ERROR":
-                return {
-                    ...state,
-                    authErrCode: {
-                        ...state.authErrCode,
-                        [action.key]: action.errCode,
-                        loading: false
-                    }
-                }
-                default:
+            default:
             return state;
         }   
 }
@@ -90,9 +91,9 @@ export function signup(userInfo) {
                 localStorage.user = JSON.stringify(user);
                 dispatch(authenticate(user));
             })
-            .catch((err) => {
+            .catch(err => {
                 console.error(err);
-                dispatch(authError("signup", err.response.status));
+                dispatch(authError("signup", err.response.status))
             })
     }
 }
@@ -120,3 +121,4 @@ export function logout() {
         type: "LOGOUT"
     }
 }
+
