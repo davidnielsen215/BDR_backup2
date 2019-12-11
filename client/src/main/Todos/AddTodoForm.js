@@ -4,7 +4,7 @@ function AddTodoForm(props) {
     return (
         <div>
             <form onSubmit={props.handleSubmit}>
-                <h4>Add Subscription</h4>
+                <h4>Add New Todo</h4>
 
                 <input
                     name="title"

@@ -1,6 +1,5 @@
-import React, {Component} from 'react';
+import React, { Component } from 'react';
 import SignupForm from "./SignupForm";
-
 import {connect} from "react-redux";
 import {signup} from "../../redux/auth";
 
@@ -40,22 +39,30 @@ class SignupFormContainer extends Component {
 
     handleSubmit(e) {
         e.preventDefault();
-        e.preventDefault();
         this.props.signup(this.state.inputs);
         this.clearInputs();
     }
 
     render() {
+        let authErrCode = this.props.authErrCode.signup
+        let errMsg = ""
+        if (authErrCode < 500 && authErrCode > 399){
+            errMsg = "Please use a different email address"
+        } else if (authErrCode > 499) {
+            errMsg = "Server error"
+        }
+        
         return (
             <SignupForm
                 handleChange={this.handleChange.bind(this)}
                 handleSubmit={this.handleSubmit.bind(this)}
+                errMsg={errMsg}
                 {...this.state.inputs} />
         )
     }
 }
 
-export default connect(null, {signup})(SignupFormContainer)
+export default connect(state => state.auth, { signup })(SignupFormContainer);
 
 
 
