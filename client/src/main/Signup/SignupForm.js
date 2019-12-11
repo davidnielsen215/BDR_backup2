@@ -8,8 +8,8 @@ function SignupForm(props) {
                 <input onChange={props.handleChange}
                        value={props.username}
                        name="username"
-                       type="text"
-                       placeholder="Username"/>
+                       type="email"
+                       placeholder="Email Address"/>
                 <input onChange={props.handleChange}
                        value={props.password}
                        name="password"

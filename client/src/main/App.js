@@ -21,11 +21,11 @@ class App extends Component {
         const {isAuthenticated, loading} = this.props;
 
         return (
+            
             <div className="app-wrapper">
                 <Navbar/>
                 {loading ? 
                 <div><i><p>...Loading</p></i></div>:
-
                 <Switch>
                         <Route exact path="/" render={ props => isAuthenticated ? 
                             <Redirect to="/profile"/> :

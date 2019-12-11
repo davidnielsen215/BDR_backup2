@@ -12,7 +12,7 @@ app.use(bodyParser.json());
 
 //connect to db
 mongoose.Promise = global.Promise;
-mongoose.connect("mongodb://localhost/todo-auth-example",
+mongoose.connect("mongodb://localhost/bdr-subscription",
     {useMongoClient: true},  // helps get rid of deprecation warnings
     (err) => {
         if (err) throw err;

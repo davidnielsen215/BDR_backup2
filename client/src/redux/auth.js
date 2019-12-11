@@ -12,7 +12,7 @@ const initialState = {
         login: ""
     },
     isAuthenticated: false,
-    loading: true
+    loading: false
 }
 
 
