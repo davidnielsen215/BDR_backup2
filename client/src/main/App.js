@@ -4,6 +4,7 @@ import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 import {connect} from "react-redux";
 import { verify } from "../redux/auth";
 
+
 import ProtectedRoute from "./ProtectedRoute"
 import Signup from "./Signup";
 import Login from "./Login";
@@ -23,21 +24,19 @@ class App extends Component {
         return (
             <div className="app-wrapper">
                 <Navbar/>
-                {loading ? 
-                <div><i><p>...Loading</p></i></div>:
-
-                <Switch>
-                        <Route exact path="/" render={ props => isAuthenticated ? 
-                            <Redirect to="/profile"/> :
-                            <Signup {...props}/>
-                        }/>
-                        <Route path="/login" render={ props => isAuthenticated ?
-                            <Redirect to="/profile"/> :
-                            <Login {...props}/>
-                        } />
-                        <ProtectedRoute path="/todos" component={TodoList}/>
-                        <ProtectedRoute path="/profile" component={Profile}/>
-                </Switch>
+                {loading ?
+                    <div>...Loading data </div>
+                    :
+                    <Switch>
+                        <Route exact path="/" render={props => isAuthenticated ?
+                            <Redirect to="/profile" /> :
+                            <Signup {...props} />} />
+                        <Route path="/login" render={props => isAuthenticated ?
+                            <Redirect to="/profile" /> :
+                            <Login {...props} />} />
+                        <ProtectedRoute path="/todos" component={TodoList} />
+                        <ProtectedRoute path="/profile" component={Profile} />
+                    </Switch>
                 }
             </div>
             

@@ -38,6 +38,7 @@ export function verify() {
                 let { user } = response.data;
                 dispatch(authenticate(user));
             })
+            
             .catch(err => {
                 dispatch(authError("verify", err.response.status))
             })
