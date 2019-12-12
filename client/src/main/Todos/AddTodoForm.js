@@ -2,11 +2,9 @@ import React from 'react'
 
 function AddTodoForm(props) {
     return (
-        <div>
+        <div className='sub-form'>
             <form onSubmit={props.handleSubmit}>
                 <h4>Add Subcription Plan</h4>
-
-               
 
                 <input
                     name="title"
@@ -14,8 +12,9 @@ function AddTodoForm(props) {
                     onChange={props.handleChange}
                     type="text"
                     placeholder="Title"/>
+                    <br/>
 
-                <button type="submit">+</button>
+                <button type="submit">Add</button>
             </form>
         </div>
     )

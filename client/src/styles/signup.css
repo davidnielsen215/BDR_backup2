@@ -1,8 +1,11 @@
 /* Entire application wrapper */
+*{
+  margin: 0px;
+}
 
   .app-wrapper {
   text-align: center;
-  background: rgb(76, 90, 128);
+  background: linear-gradient(90deg, rgba(32,61,106,1) 36%, rgba(49,96,149,1) 100%);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -16,15 +19,19 @@
   .navbar-wrapper{
     margin: 20px;
     width: 100%;
-    display: flex;
-    flex-direction: row;
-    /* align-items: center; */
+    display: inline-flex;
     justify-content: space-evenly;
+    /* flex-direction: row; */
+    /* align-items: center; */
   }
 
   .nav-link{
+    background-color: rgb(42, 154, 245);
     color: white;
+    padding: 5px 1em;
     text-decoration: none;
+    text-transform: uppercase;
+    border-radius: 3px;
   }
   
   .account-input{
@@ -33,7 +40,7 @@
     width: 30vw;
     font-size: 1.75vw;
     border-radius: 10px;
-    margin: 10px;
+    margin: 20px;
   }
   
   .form-btn{
@@ -44,4 +51,13 @@
     font-size: 1.75vw;
     margin-top: 20px;
     border-radius: 10px;
+    margin-bottom: 3%;
+  }
+
+  .form-wrapper{
+    margin-top: 3%;
+  }
+
+  .sub-form {
+    margin: 3%;
   }
