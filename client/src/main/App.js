@@ -3,6 +3,7 @@ import Navbar from "./Navbar";
 import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 import {connect} from "react-redux";
 import { verify } from "../redux/auth";
+import '../styles/signup.css'
 
 import ProtectedRoute from "./ProtectedRoute"
 import Signup from "./Signup";
@@ -25,7 +26,7 @@ class App extends Component {
             <div className="app-wrapper">
                 <Navbar/>
                 {loading ? 
-                <div><i><p>...Loading</p></i></div>:
+                <div><i><p>...Loading User Data</p></i></div>:
                 <Switch>
                         <Route exact path="/" render={ props => isAuthenticated ? 
                             <Redirect to="/profile"/> :

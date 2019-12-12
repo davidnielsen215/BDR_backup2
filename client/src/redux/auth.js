@@ -12,7 +12,7 @@ const initialState = {
         login: ""
     },
     isAuthenticated: false,
-    loading: false
+    loading: true
 }
 
 
@@ -20,7 +20,7 @@ function authError(key, errCode) {
     return {
         type: "AUTH_ERROR",
         key,
-        errCode
+        errCode,
     }
 }
 
@@ -52,8 +52,8 @@ export default function reducer(state = initialState, action) {
                 authErrCode: {
                     ...state.authErrCode,
                     [action.key]: action.errCode,
-                    loading: false
-                }
+                },
+                loading: false
             }
 
         case "AUTHENTICATE":
@@ -80,6 +80,7 @@ export function authenticate(user) {
         type: "AUTHENTICATE",
         user  // pass the user for storage in Redux store
     }
+    
 }
 
 export function signup(userInfo) {
