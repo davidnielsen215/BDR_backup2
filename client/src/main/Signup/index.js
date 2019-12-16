@@ -49,7 +49,7 @@ class SignupFormContainer extends Component {
         if (authErrCode < 500 && authErrCode > 399){
             errMsg = "Please use a different email address"
         } else if (authErrCode > 499) {
-            errMsg = "Server error"
+            errMsg = "Please enter valid information"
         }
         
         return (
