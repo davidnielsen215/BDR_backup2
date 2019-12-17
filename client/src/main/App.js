@@ -3,7 +3,7 @@ import Navbar from "./Navbar";
 import { Route, Switch, withRouter, Redirect } from "react-router-dom";
 import {connect} from "react-redux";
 import { verify } from "../redux/auth";
-
+import '../styles/signup.css'
 
 import ProtectedRoute from "./ProtectedRoute"
 import Signup from "./Signup";
@@ -22,21 +22,23 @@ class App extends Component {
         const {isAuthenticated, loading} = this.props;
 
         return (
+            
             <div className="app-wrapper">
                 <Navbar/>
-                {loading ?
-                    <div>...Loading data </div>
-                    :
-                    <Switch>
-                        <Route exact path="/" render={props => isAuthenticated ?
-                            <Redirect to="/profile" /> :
-                            <Signup {...props} />} />
-                        <Route path="/login" render={props => isAuthenticated ?
-                            <Redirect to="/profile" /> :
-                            <Login {...props} />} />
-                        <ProtectedRoute path="/todos" component={TodoList} />
-                        <ProtectedRoute path="/profile" component={Profile} />
-                    </Switch>
+                {loading ? 
+                <div><i><p>...Loading User Data</p></i></div>:
+                <Switch>
+                        <Route exact path="/" render={ props => isAuthenticated ? 
+                            <Redirect to="/profile"/> :
+                            <Signup {...props}/>
+                        }/>
+                        <Route path="/login" render={ props => isAuthenticated ?
+                            <Redirect to="/profile"/> :
+                            <Login {...props}/>
+                        } />
+                        <ProtectedRoute path="/todos" component={TodoList}/>
+                        <ProtectedRoute path="/profile" component={Profile}/>
+                </Switch>
                 }
             </div>
             
@@ -45,4 +47,3 @@ class App extends Component {
 }
 
 export default withRouter(connect(state => state.auth,{verify})(App));
-
